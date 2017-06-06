@@ -17,4 +17,4 @@ save(temp, file = "r/HadCRUT4-gl-download20170601.RData")
 # save JSON
 library(jsonlite)
 cat(toJSON(temp, pretty = T))
-write(toJSON(temp, pretty = T), file = "js/HadCRUT4-gl-download20170601.json")
+write(paste("data =", toJSON(temp, pretty = T)), file = "js/HadCRUT4-gl-download20170601.json")

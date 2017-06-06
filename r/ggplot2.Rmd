@@ -1,0 +1,26 @@
+---
+title: '`ggplot2`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+library(ggplot2)
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+```
+
+
+```{r}
+ggplot(temp, aes(Year, Annual)) +
+  annotate("rect", xmin = 1961, xmax = 1990, ymin = -Inf, ymax = +Inf, fill = "gray90") +
+  annotate("text", x = 1961, y = -Inf, label = "Reference period", vjust = -.5, hjust = 0, size = 3) +
+  geom_hline(yintercept = 0, lty = 2, color = "gray70") +
+  geom_ribbon(aes(ymin = min, ymax = max), fill = "lightblue") +
+  geom_line(color = "steelblue") +
+  theme_minimal() +
+  labs(x = "", y = "Temperature anomaly")
+```
+
