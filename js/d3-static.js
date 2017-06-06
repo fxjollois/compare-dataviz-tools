@@ -1,8 +1,14 @@
-/*global console,d3 */
+/*global console,d3,data */
 var file = "HadCRUT4-gl.dat";
 
-function createEvolution(container, file) {
+function createEvolution(container, data) {
     "use strict";
+    
+    function getArrayMonths(obj) {
+        return Object.keys(obj).slice(1, 13).map(function (k) {
+            return obj[k];
+        });
+    }
     
     // Graphical properties
     var width = 800,
@@ -26,14 +32,14 @@ function createEvolution(container, file) {
 
         // Line definition 
         line = d3.line()
-            .x(function (d) { return x(d.year); })
-            .y(function (d) { return y(d.annual); }),
+            .x(function (d) { return x(d.Year); })
+            .y(function (d) { return y(d.Annual); }),
         
         // Area definition for annual min/max interval
         area = d3.area()
-            .x(function (d) { return x(d.year); })
-            .y0(function (d) { return y(d3.min(d.months)); })
-            .y1(function (d) { return y(d3.max(d.months)); });
+            .x(function (d) { return x(d.Year); })
+            .y0(function (d) { return y(d3.min(getArrayMonths(d))); })
+            .y1(function (d) { return y(d3.max(getArrayMonths(d))); });
     
     // Y Axis label
     evolution.append("text")
@@ -44,82 +50,60 @@ function createEvolution(container, file) {
         .style("text-anchor", "middle")
         .text("Temperature anomaly");
     
-    d3.text(
-        file,
-        function (error, lines) {
-            if (error) {
-                d3.select("body").html("Error !!");
-                throw error;
-            }
-            var data = d3.tsvParseRows(
-                lines,
-                function (line, index) {
-                    var values;
-                    if (index % 2 === 0) {
-                        values = line[0].split(" ")
-                            .filter(function (e) { return (e !== ""); })
-                            .map(parseFloat);
-                        return {
-                            year: values[0],
-                            annual: values[13],
-                            months: values.slice(1, 13)
-                        };
-                    }
-                }
-            );
-            
-            x.domain(d3.extent(data, function (d) { return d.year; }));
-            y.domain([
-                d3.min(data, function (d) { return d3.min(d.months.concat(d.annual)); }),
-                d3.max(data, function (d) { return d3.max(d.months.concat(d.annual)); })
-            ]);
-                        
-            // Reference period indication
-            evolution.append("rect")
-                .attr("x", x(1961))
-                .attr("width", x(1990) - x(1960))
-                .attr("y", 0)
-                .attr("height", heightInside)
-                .attr("fill", "#eee");
-            evolution.append("text")
-                .attr("x", x(1961)).attr("dx", 5)
-                .attr("y", heightInside).attr("dy", -5)
-                .style("font-size", ".75em")
-                .text("Reference period");
+    
+    x.domain(d3.extent(data, function (d) { return d.Year; }));
+    y.domain([
+        d3.min(data, function (d) { return d3.min(getArrayMonths(d)); }),
+        d3.max(data, function (d) { return d3.max(getArrayMonths(d)); })
+    ]);
+    
+    console.log(x.range());
+    console.log(x.domain());
+    console.log(y.range());
+    console.log(y.domain());
 
-            // 0 reference line
-            evolution.append("line")
-                .attr("x1", 0).attr("x2", widthInside)
-                .attr("y1", y(0)).attr("y2", y(0))
-                .attr("stroke", "#ccc")
-                .attr("stroke-dasharray", "10,5");
+    // Reference period indication
+    evolution.append("rect")
+        .attr("x", x(1961))
+        .attr("width", x(1990) - x(1960))
+        .attr("y", 0)
+        .attr("height", heightInside)
+        .attr("fill", "#eee");
+    evolution.append("text")
+        .attr("x", x(1961)).attr("dx", 5)
+        .attr("y", heightInside).attr("dy", -5)
+        .style("font-size", ".75em")
+        .text("Reference period");
 
-            // Annual min/max interval
-            evolution.append("path")
-                .datum(data)
-                .attr("fill", "lightblue")
-                .attr("d", area);
-            
-            // Anomaly line
-            evolution.append("path")
-                .datum(data).attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr("stroke-linejoin", "round")
-                .attr("stroke-linecap", "round")
-                .attr("stroke-width", 1.5)
-                .attr("d", line);
+    // 0 reference line
+    evolution.append("line")
+        .attr("x1", 0).attr("x2", widthInside)
+        .attr("y1", y(0)).attr("y2", y(0))
+        .attr("stroke", "#ccc")
+        .attr("stroke-dasharray", "10,5");
 
-            // Add X and Y axis
-            evolution.append("g")
-                .attr("transform", "translate(0," + heightInside + ")")
-                .call(d3.axisBottom(x).tickFormat(d3.format(".0f")));
+    // Annual min/max interval
+    evolution.append("path")
+        .datum(data)
+        .attr("fill", "lightblue")
+        .attr("d", area);
 
-            evolution.append("g")
-                .call(d3.axisLeft(y));
-            
+    // Anomaly line
+    evolution.append("path")
+        .datum(data).attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 1.5)
+        .attr("d", line);
 
-        }
-    );
+    // Add X and Y axis
+    evolution.append("g")
+        .attr("transform", "translate(0," + heightInside + ")")
+        .call(d3.axisBottom(x).tickFormat(d3.format(".0f")));
+
+    evolution.append("g")
+        .call(d3.axisLeft(y));
 }
 
-createEvolution(d3.select("#evolution"), file);
+createEvolution(d3.select("#evolution"), data);
