@@ -1,5 +1,5 @@
 ---
-title: '`ggplot2`'
+title: 'R - `ggplot2`'
 output: html_document
 ---
 

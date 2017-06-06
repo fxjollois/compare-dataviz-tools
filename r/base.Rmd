@@ -1,0 +1,30 @@
+---
+title: 'R - `base`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+```
+
+
+```{r}
+plot(Annual ~ Year, data = temp, type = "n",
+     xlab = "", ylab = "Temperature anomaly",
+     ylim = range(temp[month.abb], na.rm = TRUE), 
+     bty = "n", axes = FALSE)
+rect(1961, -1, 1990, +1, col = "gray90", border = FALSE)
+text(1961, min(temp[month.abb], na.rm = TRUE), "Reference period", adj = c(0, -.5), cex = .7)
+axis(1)
+axis(2)
+polygon(c(temp$Year, rev(temp$Year)),
+        c(temp$max, rev(temp$min)),
+        col = "lightblue", border = FALSE)
+lines(temp$Year, temp$Annual, col = "steelblue")
+```
+
