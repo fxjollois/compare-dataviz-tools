@@ -11,7 +11,6 @@
 	- highcharts
 	- autre ?
 - R
-	- plotly
 	- googleVis
 	- metricsgraphics 
 	- rcdimple

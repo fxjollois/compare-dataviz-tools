@@ -1,0 +1,30 @@
+---
+title: 'R - `plotly`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+library(plotly)
+```
+
+
+```{r}
+plot_ly(temp, x = ~Year, y = ~Annual) %>%
+  layout(showlegend = FALSE,
+         xaxis = list(title = ""),
+         yaxis = list(title = "Temperature anomaly")) %>%
+  add_ribbons(ymin = ~min, ymax = ~max, color = I("lightblue")) %>%
+  add_lines(color = I("steelblue")) %>%
+  layout(shapes = list(type = "rect", 
+                       fillcolor = "#aaa", opacity = .2, line = list(color = "#aaa"),
+                       x0 = 1961, y0 = -1, x1 = 1990, y1 = +1)) %>%
+  layout(annotations = list(x = 1961, y = min(temp$min), text = "Reference period", 
+                            xanchor = "left", showarrow = FALSE))
+```
+
