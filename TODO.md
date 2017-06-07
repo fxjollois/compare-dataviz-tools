@@ -14,7 +14,6 @@
 	- googleVis
 	- metricsgraphics 
 	- rcdimple
-	- highcharter
 	- ggvis
 	- autre ?
 - Python

@@ -1,0 +1,35 @@
+---
+title: 'R - `highcharter`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+library(highcharter)
+```
+
+
+```{r}
+highchart() %>%
+  hc_add_series(data = temp, type = "arearange", hcaes(x = Year, low = min, high = max)) %>%
+  hc_add_series(data = temp, type = "line", hcaes(x = Year, y = Annual), name = "Anomaly") %>%
+  hc_xAxis(
+    plotBands = list(
+      list(label = list(text = "Reference period"), color = "#eee", from = 1961, to = 1990)
+    )
+  ) %>%
+  hc_yAxis(
+    plotLines = list(
+      list(color = "#aaa", width = 2, value = 0)
+    )
+  ) %>%
+  hc_yAxis(title = list(text = "Temperature anomaly")) %>%
+  hc_colors(c("lightblue", "steelblue")) %>%
+  hc_legend(enabled = FALSE)
+```
+

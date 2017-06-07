@@ -17,6 +17,7 @@ Language | HTML result | Source code
  |  [`ggplot2`](r/ggplot2.html) | [Rmd file](r/ggplot2.Rmd)
  | [`dygraphs`](r/dygraphs.html) | [Rmd file](r/dygraphs.Rmd)
  | [`plotly`](r/plotly.html) | [Rmd file](r/plotly.Rmd)
+ | [`highcharter`](r/highcharter.html) | [Rmd file](r/highcharter.Rmd)
  
-
+ 
 > Work under process - [TODO](TODO)
