@@ -12,8 +12,9 @@ The HadCRUT4 data file was downloaded the **June 1st 2017**, and converted into 
 Language | HTML result | Source code
 -|-|-
 `Javascript` | [`d3.js` without interaction](js/d3-static.html) | [js script](js/d3-static.js)
-`R` |  [`base `](r/base.html) | [Rmd file]()
+`R` |  [`graphics `](r/graphicshtml) | [Rmd file](r/graphics.Rmd)
  |  [`ggplot2`](r/ggplot2.html) | [Rmd file](r/ggplot2.Rmd)
+ | [`dygraphs`](r/dygraphs.html) | [Rmd file](r/dygraphs.Rmd)
 
 
 > Work under process - [TODO](TODO)

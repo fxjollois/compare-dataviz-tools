@@ -1,0 +1,24 @@
+---
+title: 'R - `dygraphs`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+library(dygraphs)
+```
+
+
+```{r}
+dygraph(temp[c("Year", "Annual", "min", "max")], ylab = "Temperature anomaly") %>%
+  dyAxis("x", drawGrid = FALSE) %>%
+  dySeries(c("min", "Annual", "max")) %>%
+  dyShading("1961", "1990", color = "#eee") %>%
+  dyAnnotation(1975, text = "Reference period", attachAtBottom = TRUE, width = 150)
+```
+

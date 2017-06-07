@@ -4,16 +4,19 @@
 	- refaire l'organisation : langage > fichier.ext
 	- données : préparer les données au format directement lisible selon le langage
 - JS :
-	- données
 	- Google Charts
-	- plotly ?
-	- highcharts ?
+	- dygraphs
+	- dimple
+	- plotly
+	- highcharts
 	- autre ?
 - R
-	- données
-	- base
-	- ggplot2
 	- plotly
+	- googleVis
+	- metricsgraphics 
+	- rcdimple
+	- highcharter
+	- ggvis
 	- autre ?
 - Python
 	- données
