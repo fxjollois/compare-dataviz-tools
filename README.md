@@ -3,7 +3,8 @@
 The aim is to compare langages or software to create static and interactive dataviz.
 
 For that, we use global temperature data from [Climate Research Unit](http://www.cru.uea.ac.uk/). The data are available in the following page :
-https://crudata.uea.ac.uk/cru/data/temperature/
+
+<https://crudata.uea.ac.uk/cru/data/temperature/>
 
 The HadCRUT4 data file was downloaded the **June 1st 2017**, and converted into an adapted format for each langage.
 
