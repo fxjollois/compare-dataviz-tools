@@ -1,0 +1,29 @@
+---
+title: 'R - `metricsgraphics`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+library(metricsgraphics)
+```
+
+
+```{r}
+temp %>%
+  mjs_plot(Year, Annual) %>%
+  mjs_add_css_rule('{{ID}} .mg-line1-color { stroke: steelblue; }') %>%
+  mjs_add_confidence_band(min, max) %>%
+  mjs_add_css_rule('{{ID}} .mg-confidence-band { fill: lightblue; }') %>%
+  mjs_labs(y = "Temperature anomaly") %>%
+  mjs_add_baseline(0, "") %>%
+  mjs_annotate_region(1961, 1990, "Reference period") %>% 
+  mjs_add_css_rule('{{ID}} .mg-region { fill: #ccc; }') %>%
+  mjs_add_css_rule('{{ID}} .mg-region-text { fill: black; }')
+```
+

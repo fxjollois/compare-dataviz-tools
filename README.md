@@ -18,6 +18,7 @@ Language | HTML result | Source code
  | [`dygraphs`](r/dygraphs.html) | [Rmd file](r/dygraphs.Rmd)
  | [`plotly`](r/plotly.html) | [Rmd file](r/plotly.Rmd)
  | [`highcharter`](r/highcharter.html) | [Rmd file](r/highcharter.Rmd)
+ | [`metricsgraphics`](r/metricsgraphics.html) | [Rmd file](r/metricsgraphics.Rmd)
  
  
 > Work under process - [TODO](TODO)
