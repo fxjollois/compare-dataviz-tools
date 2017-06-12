@@ -9,10 +9,10 @@
 	- dimple
 	- plotly
 	- highcharts
+	- metricsgraphics
 	- autre ?
 - R
 	- googleVis
-	- metricsgraphics 
 	- rcdimple
 	- ggvis
 	- autre ?

@@ -18,3 +18,6 @@ save(temp, file = "r/HadCRUT4-gl-download20170601.RData")
 library(jsonlite)
 cat(toJSON(temp, pretty = T))
 write(paste("data =", toJSON(temp, pretty = T)), file = "js/HadCRUT4-gl-download20170601.json")
+
+# save CSV
+write.table(temp, file = "HadCRUT4-gl-dowload20170601.csv", row.names = FALSE, sep = ";", quote = FALSE)
