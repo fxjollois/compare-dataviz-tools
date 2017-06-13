@@ -20,6 +20,7 @@ Language | HTML result | Source code
     | [`highcharter`](r/highcharter.html) | [Rmd file](r/highcharter.Rmd)
     | [`metricsgraphics`](r/metricsgraphics.html) | [Rmd file](r/metricsgraphics.Rmd)
  `python` | [`matplotlib`](python/matplotlib.html) | [ipynb file](python/matplotlib.ipynb)
+          | [`seaborn`](python/seaborn.html) | [ipynb file](python/seaborn.ipynb)
 
  
 > Work under process - [TODO](TODO)
