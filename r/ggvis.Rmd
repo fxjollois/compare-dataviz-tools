@@ -1,0 +1,27 @@
+---
+title: 'R - `ggvis`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+
+library(ggvis)
+```
+
+
+```{r}
+ggvis(temp, ~Year, ~Annual) %>%
+  add_axis("y", title = "Temperature anomaly") %>%
+  add_axis("x", title = "") %>%
+  hide_legend("stroke") %>%
+  layer_rects(x = 1961, y = min(temp$min), x2 = 1990, y2 = max(temp$max), fill := "#eee", stroke := "#eee") %>%
+  layer_text(x = 1961, y = min(temp$min), text := "Reference period") %>%
+  layer_ribbons(y = ~min, y2 = ~max, fill := "lightblue") %>%
+  layer_lines(stroke = "steelblue")
+```
+

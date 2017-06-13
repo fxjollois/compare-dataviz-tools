@@ -1,7 +1,6 @@
 # TODO list
 
 - Global :
-	- refaire l'organisation : langage > fichier.ext
 	- données : préparer les données au format directement lisible selon le langage
 - JS :
 	- Google Charts
@@ -14,13 +13,8 @@
 - R
 	- googleVis
 	- rcdimple
-	- ggvis
 	- autre ?
 - Python
-	- données
-	- matplotlib
-	- seaborn
-	- bokeh
 	- plotly
 - SAS
 	- données

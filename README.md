@@ -13,12 +13,13 @@ The HadCRUT4 data file was downloaded the **June 1st 2017**, and converted into 
 Language | HTML result | Source code
 -|-|-
 `Javascript` | [`d3.js` without interaction](js/d3-static.html) | [js script](js/d3-static.js)
-`R` |  [`graphics `](r/graphics.html) | [Rmd file](r/graphics.Rmd)
-    |  [`ggplot2`](r/ggplot2.html) | [Rmd file](r/ggplot2.Rmd)
+`R` | [`graphics `](r/graphics.html) | [Rmd file](r/graphics.Rmd)
+    | [`ggplot2`](r/ggplot2.html) | [Rmd file](r/ggplot2.Rmd)
     | [`dygraphs`](r/dygraphs.html) | [Rmd file](r/dygraphs.Rmd)
     | [`plotly`](r/plotly.html) | [Rmd file](r/plotly.Rmd)
     | [`highcharter`](r/highcharter.html) | [Rmd file](r/highcharter.Rmd)
     | [`metricsgraphics`](r/metricsgraphics.html) | [Rmd file](r/metricsgraphics.Rmd)
+    | [`ggvis`](r/ggvis.html) | [Rmd file](r/ggvis.Rmd)
  `python` | [`matplotlib`](python/matplotlib.html) | [ipynb file](python/matplotlib.ipynb)
           | [`seaborn`](python/seaborn.html) | [ipynb file](python/seaborn.ipynb)
           | [`bokeh`](python/bokeh.html) | [ipynb file](python/bokeh.ipynb)
