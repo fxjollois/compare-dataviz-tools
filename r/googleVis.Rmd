@@ -1,0 +1,33 @@
+---
+title: 'R - `googleVis`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+load("HadCRUT4-gl-download20170601.RData")
+
+temp$min = apply(temp[month.abb], 1, min, na.rm = TRUE)
+temp$max = apply(temp[month.abb], 1, max, na.rm = TRUE)
+temp$abs_max = abs(temp$max - temp$min)
+temp$abs_annual = abs(temp$Annual)
+
+library(googleVis)
+```
+
+
+There is no way to add annotation for *reference period* in `googleVis`.
+
+
+```{r, results = 'asis'}
+p = gvisAreaChart(temp, "Year", c("min", "Annual", "abs_max"),
+                  options = list(width = 800, height = 500, isStacked = TRUE, 
+                                 vAxes = "[{title: 'Temperature anomaly'}]",
+                                 legend = "{position: 'none'}",
+                                 series = "[{type: 'area', color: 'transparent'}, {type: 'line', color: 'steelblue'},                                                  {type: 'area', color: 'lightblue', areaOpacity: 1}]"))
+# for viewing into RStudio 
+# plot(p, browser = rstudioapi::viewer)
+p
+```
+
+

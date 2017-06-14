@@ -9,9 +9,9 @@
 	- plotly
 	- highcharts
 	- metricsgraphics
+	- visjs
 	- autre ?
 - R
-	- googleVis
 	- rcdimple
 	- autre ?
 - Python
