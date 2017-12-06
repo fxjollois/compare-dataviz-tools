@@ -1,5 +1,4 @@
-/*global console,d3,data */
-var file = "HadCRUT4-gl.dat";
+/*global d3,data */
 
 function createEvolution(container, data) {
     "use strict";
@@ -57,11 +56,6 @@ function createEvolution(container, data) {
         d3.max(data, function (d) { return d3.max(getArrayMonths(d)); })
     ]);
     
-    console.log(x.range());
-    console.log(x.domain());
-    console.log(y.range());
-    console.log(y.domain());
-
     // Reference period indication
     evolution.append("rect")
         .attr("x", x(1961))
